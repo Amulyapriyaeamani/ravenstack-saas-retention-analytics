@@ -27,3 +27,24 @@ Evaluate support ticket volume, resolution time, and customer satisfaction to as
 
 4. **Optimize revenue:**  
 Analyze subscription trends, plan upgrades/downgrades, and MRR to identify opportunities for increasing revenue and customer lifetime value.
+
+## Key Metrics (KPIs)
+
+### Churn & Retention
+- Churn Rate
+- Retention Rate
+
+### Feature Adoption & Engagement
+- Feature Adoption Rate
+- Active Users
+
+### Support Experience
+- Average Resolution Time
+- Customer Satisfaction Score (CSAT)
+
+### Revenue
+- Monthly Recurring Revenue (MRR)
+- Average Revenue per User (ARPU)
+- Upgrade Rate
+- Downgrade Rate
+- Revenue Churn Rate
