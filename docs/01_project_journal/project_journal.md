@@ -14,8 +14,7 @@ This project simulates a real-world SaaS analytics scenario where I am responsib
 ### Next Step:
 Define business objective
 
-## Date:
-Step: 2 – Define Business Objective
+## Step: 2 – Define Business Objective
 
 ### Goal Today:
 Define the core business problem and objective
