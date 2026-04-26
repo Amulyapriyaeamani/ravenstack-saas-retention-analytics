@@ -41,3 +41,19 @@ Action:
 
 - feature_usage contains duplicate usage_id values (intentional dataset behavior)
 - Data integrity will be handled in cleaning phase
+
+## Step 5.5: Relationship Validation & Enforcement
+
+Validated all relationships using LEFT JOIN checks.
+
+Findings:
+- No orphan records
+- No null IDs
+- Minimal duplicates (only in feature_usage)
+
+Decision:
+- Enforced foreign key constraints across tables
+- Delayed primary key enforcement for feature_usage due to duplicates
+
+Insight:
+Dataset is structurally clean, enabling reliable cross-table analysis.
