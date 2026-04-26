@@ -41,3 +41,17 @@ Each sub-goal connects directly to a business problem and will guide the analysi
 
 ### Next Step:
 Define success metrics (KPIs)
+
+## Step: 4 – Define KPIs
+
+### Goal Today:
+Define success metrics aligned with business objectives
+
+### Work Done:
+Defined core KPIs across churn, usage, support, and revenue including churn rate, retention rate, MRR, ARPU, feature adoption, and support metrics.
+
+### Key Understanding:
+KPIs must directly reflect business success and will guide all further analysis.
+
+### Next Step:
+Load data into SQL and begin data validation
