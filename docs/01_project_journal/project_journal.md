@@ -55,3 +55,64 @@ KPIs must directly reflect business success and will guide all further analysis.
 
 ### Next Step:
 Load data into SQL and begin data validation
+
+## Step 1–4: Strategic Foundation
+
+Defined role as Product Analyst at RavenStack and established business objective to improve retention and revenue before public launch.
+
+Identified key sub-goals:
+- Reduce churn
+- Increase feature adoption
+- Improve support experience
+- Optimize revenue
+
+Defined KPIs aligned with each objective.
+
+---
+
+## Step 5: Data Loading & Schema Setup
+
+### Work Done
+- Created database schema using SQL script (00_create_tables.sql)
+- Defined tables with primary keys
+- Loaded all 5 datasets into PostgreSQL using COPY command
+- Verified row counts for all tables
+
+### Row Count Validation
+- accounts → 500
+- subscriptions → 5000
+- feature_usage → 25000
+- support_tickets → 2000
+- churn_events → 600
+
+---
+
+## Issues Encountered & Decisions
+
+### 1. Duplicate Primary Key Issue (feature_usage)
+- Encountered duplicate `usage_id` values
+- Dropped primary key constraint temporarily to allow full data ingestion
+
+**Insight:**
+Real-world datasets often contain duplicate or inconsistent identifiers.
+
+---
+
+### 2. Data Type Mismatch (support_tickets)
+- `satisfaction_score` defined as INTEGER but dataset contained decimal values (e.g., 4.0)
+- Updated column type to NUMERIC
+
+**Insight:**
+Schema should adapt to real-world data, not assumptions.
+
+---
+
+## Key Learnings
+- Data ingestion is not trivial and requires validation
+- Real-world data often contains inconsistencies
+- Proper schema design and flexibility are critical
+
+---
+
+## Next Step
+Initial data cleaning and validation (Step 6)
