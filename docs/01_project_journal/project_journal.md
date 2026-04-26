@@ -27,3 +27,17 @@ The focus is not just analysis but identifying actionable insights that can impr
 
 ### Next Step:
 Define sub-goals
+
+## Step: 3 – Define Sub-Goals
+
+### Goal Today:
+Break down the main objective into actionable analytical sub-goals
+
+### Work Done:
+Defined four key sub-goals: churn reduction, feature adoption, support improvement, and revenue optimization, each linked to specific analysis areas.
+
+### Key Understanding:
+Each sub-goal connects directly to a business problem and will guide the analysis modules.
+
+### Next Step:
+Define success metrics (KPIs)
