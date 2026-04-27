@@ -229,3 +229,37 @@ Account-level churn flags significantly under-report churn and are not reliable 
 
 ### Decision reinforced:
 churn_events will be used as the source of truth.
+
+## Step 8: Relationship Mapping & Data Model Understanding
+
+Mapped all table relationships and defined the structure of the dataset.
+
+### Key Learnings:
+
+- accounts is the central entity representing customers
+- subscriptions, feature_usage, support_tickets, and churn_events represent different behavioral layers
+- The dataset is event-driven with multiple fact tables
+
+---
+
+### Business Understanding:
+
+Defined the user journey as:
+
+Signup → Subscription → Usage → Support → Churn
+
+---
+
+### Analytical Impact:
+
+- Established correct join paths for analysis
+- Identified grain differences across tables
+- Prevented potential data duplication issues
+
+---
+
+### Insight:
+
+This is not a simple dataset—it reflects a real-world SaaS system where different data sources capture different aspects of user behavior.
+
+Effective analysis requires connecting these signals rather than analyzing them in isolation.
