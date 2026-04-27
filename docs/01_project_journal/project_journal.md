@@ -132,3 +132,17 @@ Decision:
 
 Insight:
 Dataset is structurally clean, enabling reliable cross-table analysis.
+
+## Date: 27/04/2026
+
+## Step 6: Initial Data Cleaning – Observations
+
+Most tables were structurally clean with no nulls or logical inconsistencies.
+
+### Key findings:
+- Feature usage contains controlled duplicate IDs (21 cases)
+- Support tickets have significant nulls in satisfaction_score (~40%)
+- Subscriptions include zero MRR values requiring further investigation
+
+### Insight:
+Not all data issues are errors—some reflect real business behavior (e.g., missing satisfaction scores).
