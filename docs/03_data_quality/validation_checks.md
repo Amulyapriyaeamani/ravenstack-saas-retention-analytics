@@ -80,3 +80,88 @@ Insight: Likely non-response, not data error
 Nulls: 0  
 Refund Range: 0 – 392.92  
 Issues: None
+
+## Data Integrity Validation (Step 7)
+
+### 1. Referential Integrity Checks
+
+| Relationship                          | Result |
+|--------------------------------------|--------|
+| subscriptions → accounts             | PASS   |
+| feature_usage → subscriptions        | PASS   |
+| support_tickets → accounts           | PASS   |
+| churn_events → accounts              | PASS   |
+
+No orphan records were found across any tables.
+
+---
+
+### 2. Primary Key & Null Validation
+
+| Table             | Null IDs | Duplicate IDs |
+|------------------|----------|---------------|
+| accounts         | 0        | 0             |
+| subscriptions    | 0        | 0             |
+| feature_usage    | 0        | 21 duplicates |
+| support_tickets  | 0        | 0             |
+| churn_events     | 0        | 0             |
+
+---
+
+### 3. Cross-Table Business Logic Validation
+
+#### A. Account churn_flag vs churn_events
+
+- Accounts marked churned but no churn event → **35**
+- Churn events where account not marked churned → **465**
+
+#### B. Subscription churn vs account churn
+
+- Mismatched churn flags → **370**
+
+---
+
+### 4. Other Logical Consistency Checks
+
+| Check                          | Result |
+|--------------------------------|--------|
+| Trial users generating revenue | 0 (PASS) |
+| Churned without end_date       | 0 (PASS) |
+
+---
+
+### 5. Key Findings
+
+- Significant inconsistency in churn definitions across tables
+- accounts.churn_flag is not aligned with churn_events
+- subscriptions.churn_flag also inconsistent with account-level churn
+
+---
+
+### 6. Final Decision
+
+**churn_events table will be used as the single source of truth for churn analysis**
+
+Reason:
+- Event-level granularity
+- Contains churn timing, reasons, and financial impact
+- More reliable than aggregated flags
+
+---
+
+### 7. Notes
+
+- Dataset is structurally clean but logically inconsistent in business definitions
+- No structural issues (joins safe)
+- Business logic needs to be defined explicitly during analysis
+
+### Churn Accuracy Analysis
+
+Total churned accounts (from churn_events): 352  
+Correctly flagged in accounts: 75  
+Missed churn cases: 277  
+
+Accuracy of accounts.churn_flag ≈ 21%
+
+Conclusion:
+accounts.churn_flag is highly unreliable and under-reports churn significantly.
