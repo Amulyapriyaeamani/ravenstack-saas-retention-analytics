@@ -263,3 +263,35 @@ Signup → Subscription → Usage → Support → Churn
 This is not a simple dataset—it reflects a real-world SaaS system where different data sources capture different aspects of user behavior.
 
 Effective analysis requires connecting these signals rather than analyzing them in isolation.
+
+## Step 9: Data Dictionary Creation
+
+Developed a detailed column-level data dictionary for all tables.
+
+### Focus:
+- Business meaning of each column
+- Relevance to analysis and KPIs
+- Identification of unreliable fields
+
+---
+
+### Key Learnings:
+
+- Not all columns are usable (e.g., churn_flag inconsistency)
+- Some nulls are meaningful (e.g., satisfaction_score)
+- Different tables capture different aspects of user behavior
+
+---
+
+### Impact:
+
+This step ensures:
+- Accurate KPI definitions
+- Correct analytical joins
+- Strong business interpretation of data
+
+---
+
+### Insight:
+
+Understanding columns deeply is critical—analysis quality depends more on interpretation than SQL complexity.
