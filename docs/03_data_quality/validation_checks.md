@@ -52,3 +52,31 @@ Result:
 
 Action:
 Foreign keys added across all tables except primary key on feature_usage (due to duplicates)
+
+## Surface Level Cleaning
+
+### Accounts
+Nulls: 0  
+Duplicates: 0  
+Issues: None  
+
+### Subscriptions
+Nulls: 0  
+Date Issues: 0  
+Revenue Range: 0 – 33830  
+Issues: MRR = 0 present (needs investigation)
+
+### Feature Usage
+Nulls: 0  
+Duplicates: 21 (controlled duplicates)  
+Logical Issues: None  
+
+### Support Tickets
+Nulls: 825 (satisfaction_score)  
+Time Issues: None  
+Insight: Likely non-response, not data error  
+
+### Churn Events
+Nulls: 0  
+Refund Range: 0 – 392.92  
+Issues: None
