@@ -214,3 +214,18 @@ An analyst must evaluate and define a consistent source of truth before proceedi
 ### Next Step:
 
 Proceed to relationship mapping and analytical data modeling (Step 8)
+
+## Additional Analysis:
+
+Compared distinct churned accounts from churn_events with account-level churn flags.
+
+### Findings:
+- Total churned accounts: 352
+- Correctly flagged in accounts: 75
+- Accuracy: ~21%
+
+### Insight:
+Account-level churn flags significantly under-report churn and are not reliable for analysis.
+
+### Decision reinforced:
+churn_events will be used as the source of truth.
