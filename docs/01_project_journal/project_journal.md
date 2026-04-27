@@ -146,3 +146,71 @@ Most tables were structurally clean with no nulls or logical inconsistencies.
 
 ### Insight:
 Not all data issues are errors—some reflect real business behavior (e.g., missing satisfaction scores).
+
+## Step 7: Data Integrity Validation (Critical)
+
+Performed comprehensive validation to ensure consistency across tables before analysis.
+
+### What was validated:
+- Referential integrity across all relationships
+- Primary key uniqueness and null checks
+- Cross-table business logic consistency
+- Subscription lifecycle logic
+- Trial vs revenue alignment
+
+---
+
+### Key Findings:
+
+1. Structural Integrity:
+All tables passed referential integrity checks with no orphan records.
+
+2. Primary Key Validation:
+All tables had unique and non-null identifiers except feature_usage, which contained 21 duplicate usage_id values.
+
+3. Major Insight — Churn Inconsistency:
+
+Significant inconsistencies observed across churn definitions:
+
+- 35 accounts marked churned without corresponding churn events
+- 465 churn events not reflected in account churn_flag
+- 370 mismatches between subscription and account churn flags
+
+---
+
+### Interpretation:
+
+Churn is represented differently across tables:
+- accounts.churn_flag (aggregated flag)
+- subscriptions.churn_flag (subscription-level)
+- churn_events (event-level data)
+
+These definitions are not aligned.
+
+---
+
+### Decision:
+
+churn_events table selected as the single source of truth for churn analysis.
+
+---
+
+### Reasoning:
+
+- Provides event-level granularity
+- Includes churn timing and reason
+- More reliable than aggregated flags
+- Enables deeper behavioral analysis
+
+---
+
+### Key Insight:
+
+Real-world datasets often contain conflicting business logic across systems.  
+An analyst must evaluate and define a consistent source of truth before proceeding.
+
+---
+
+### Next Step:
+
+Proceed to relationship mapping and analytical data modeling (Step 8)
