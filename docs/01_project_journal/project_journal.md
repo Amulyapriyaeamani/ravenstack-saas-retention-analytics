@@ -295,3 +295,62 @@ This step ensures:
 ### Insight:
 
 Understanding columns deeply is critical—analysis quality depends more on interpretation than SQL complexity.
+
+## Date:  2026-04-28 
+## Step 10: Deep Data Cleaning & Validation Completed
+
+### What I Did
+- Performed deep data validation across all 5 tables
+- Checked business logic consistency (subscriptions, churn, support, usage)
+- Identified and handled data quality issues instead of blindly cleaning
+
+### Key Findings
+
+1. **Feature Usage Table**
+   - Found duplicate `usage_id` values with different records
+   - Identified that `usage_id` is NOT a reliable primary key
+   - Redefined table grain as:
+     → one row = one feature usage event
+
+2. **Churn Data Inconsistency**
+   - Significant mismatch between `accounts.churn_flag` and `churn_events`
+   - `churn_events` identified as source of truth for churn
+
+3. **Support Data**
+   - `satisfaction_score` has 825 NULL values
+   - Interpreted as "no response", not missing data
+
+4. **Subscriptions**
+   - `end_date IS NULL` correctly represents active subscriptions
+
+5. **Outlier Analysis**
+   - No abnormal or unrealistic outliers found
+   - Extreme values represent real scenarios (power users, enterprise accounts)
+
+---
+
+### Decisions Taken
+
+- Did NOT delete or modify raw data unnecessarily
+- Avoided forcing primary keys where data didn’t support it
+- Defined business logic instead of “fixing” data blindly
+- Preserved real-world imperfections for analysis
+
+---
+
+### Key Learning
+
+This step was not about cleaning data —  
+It was about **understanding the business reality behind the data**.
+
+Learned to:
+- Question data instead of trusting it blindly
+- Differentiate between data errors vs real behavior
+- Think like a Product Analyst, not just a SQL user
+
+---
+
+### Status
+
+✅ Data is now analysis-ready  
+➡️ Ready to move to KPI definition (Step 11)
