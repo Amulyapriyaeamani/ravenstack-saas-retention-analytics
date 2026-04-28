@@ -114,6 +114,9 @@ Decision:
 Reason:
 Event-level data is more reliable than aggregated flag
 
+- Reactivated users WILL be counted as churn
+- Reason: churn_event represents a real exit event regardless of future return
+
 ## Referential Integrity
 
 All foreign key relationships validated.
