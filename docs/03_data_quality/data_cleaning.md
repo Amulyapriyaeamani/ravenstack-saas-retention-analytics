@@ -26,6 +26,10 @@ Conclusion:
 - Revenue data is consistent and reliable
 - No cleaning or flagging required
 
+- Found 778 subscriptions with mrr_amount = 0
+- All correspond to is_trial = TRUE
+- Decision: Exclude these from paid revenue calculations (MRR, ARPU)
+
 ### Subscription End Date Handling
 
 Observed NULL values in end_date.
@@ -56,6 +60,11 @@ Decision:
 
 Impact:
 All analysis will rely on aggregation of usage metrics rather than counting IDs
+
+- Duplicate usage_id values found but corresponding rows differ
+- Confirmed no duplicate events at (subscription_id, usage_date, feature_name) level
+- Decision: Treat each row as valid event; do not deduplicate
+- usage_id not used as primary key
 
 ### Primary Key & Constraint Decisions
 
@@ -114,20 +123,23 @@ No orphan records found.
 Conclusion:
 Dataset is structurally consistent for joins.
 
-## Outlier Analysis
+## Outlier Validation
 
-Outliers were evaluated across:
-- usage_count
-- usage_duration_secs
-- resolution_time_hours
-- mrr_amount
+Checked key numerical fields:
 
-Observation:
-No extreme or unrealistic values detected.
+- mrr_amount → min: 0, max: 33830
+- usage_count → min: 0, max: 26
+- usage_duration_secs → min: 0, max: 12696
+- resolution_time_hours → min: 1, max: 72
+
+Observations:
+- Values fall within realistic SaaS usage and enterprise ranges
+- High values correspond to power users / enterprise accounts
+- No extreme anomalies detected
 
 Decision:
-- No outliers removed
-- No capping applied
+- No outlier removal performed
+- All values retained for analysis
 
 Conclusion:
 Dataset reflects realistic SaaS behavior with natural variation.
