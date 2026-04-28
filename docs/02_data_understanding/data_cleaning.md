@@ -1,12 +1,12 @@
-## Data Handling Strategy
+# Data Handling Strategy
 Raw data is preserved.
 All cleaning is performed using derived logic (views/CTEs), not by modifying source tables.
 
-### Accounts Table
+## Accounts Table
 No cleaning required.
 Data is complete and consistent.
 
-### Subscriptions Table
+## Subscriptions Table
 
 Observed cases of zero MRR.
 
@@ -26,8 +26,21 @@ Conclusion:
 - Revenue data is consistent and reliable
 - No cleaning or flagging required
 
+### Subscription End Date Handling
 
-### Feature Usage Table
+Observed NULL values in end_date.
+
+Interpretation:
+NULL end_date represents active subscriptions.
+
+Decision:
+- Treated NULL as "active"
+- No imputation or modification performed
+
+Impact:
+Used in defining active users and revenue calculations
+
+## Feature Usage Table
 
 Observed duplicate usage_id values with differing row attributes.
 
@@ -66,7 +79,7 @@ Foreign Keys:
 - Referential integrity validated manually
 - Constraints can be added optionally
 
-### Support Tickets Table
+## Support Tickets Table
 
 825 NULL satisfaction scores observed.
 
@@ -80,3 +93,41 @@ NULL represents meaningful absence of feedback
 
 Note:
 Derived fields such as "response_status" will be created during analysis phase when required
+
+## Churn Data
+
+Major inconsistency found between accounts.churn_flag and churn_events.
+
+Decision:
+- churn_events selected as source of truth
+- churn_flag ignored in analysis
+
+Reason:
+Event-level data is more reliable than aggregated flag
+
+## Referential Integrity
+
+All foreign key relationships validated.
+
+No orphan records found.
+
+Conclusion:
+Dataset is structurally consistent for joins.
+
+## Outlier Analysis
+
+Outliers were evaluated across:
+- usage_count
+- usage_duration_secs
+- resolution_time_hours
+- mrr_amount
+
+Observation:
+No extreme or unrealistic values detected.
+
+Decision:
+- No outliers removed
+- No capping applied
+
+Conclusion:
+Dataset reflects realistic SaaS behavior with natural variation.
