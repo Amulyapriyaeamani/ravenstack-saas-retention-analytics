@@ -354,3 +354,87 @@ Learned to:
 
 ✅ Data is now analysis-ready  
 ➡️ Ready to move to KPI definition (Step 11)
+
+# 📘 Project Journal — Step 11: KPI Definitions
+
+**Date:** 28/04/2026  
+
+---
+
+## ✅ What I Did
+
+- Defined all core business KPIs across:
+  - Churn & Retention
+  - Feature Adoption & Engagement
+  - Support Experience
+  - Revenue
+- Standardized KPI structure with:
+  - Definition
+  - Numerator & Denominator
+  - Tables used
+  - Time logic
+  - Notes / assumptions
+- Ensured consistent **account-level aggregation** across all metrics
+- Aligned KPI definitions with cleaned and validated dataset (Steps 6–10)
+- Created a **Master Decision Log** documenting all assumptions and trade-offs
+- Incorporated handling for:
+  - Multiple subscriptions per account
+  - Reactivation cycles
+  - Trial vs paid user logic
+  - Null handling (CSAT, churn reasons)
+  - Data limitations (e.g., missing event timestamps)
+
+---
+
+## 🔍 Key Findings
+
+- `churn_events` is the only reliable source of churn → account-level churn_flag is inconsistent
+- Multiple subscriptions per account require strict use of `COUNT(DISTINCT account_id)`
+- Trial users exist in large numbers and must be handled differently across KPIs:
+  - Included in behavioral metrics (churn, usage)
+  - Excluded from revenue metrics
+- Feature usage data is at **subscription level**, requiring joins to map to accounts
+- No timestamp available for upgrade/downgrade events → approximation required
+- Monthly granularity is necessary due to lack of day-level alignment across datasets
+- Zero-MRR subscriptions are exclusively trial users → safe to exclude from revenue KPIs
+
+---
+
+## 🎯 Decisions Taken
+
+- Churn and retention measured at **account level**, not subscription level
+- Churn Rate includes **trial + paid users** to capture full funnel drop-off
+- Revenue metrics include **only paid subscriptions**
+- Feature Adoption numerator and denominator use **identical subscription activity filters**
+- Active Users defined as:
+  - Active subscription + at least one usage event in same month
+- Upgrade/Downgrade timing approximated using **subscription start_date**
+- Revenue Churn calculated using **MRR at start of month**
+- MRR aggregated at **account level before churn calculation**
+- CSAT excludes NULL values (treated as non-response, not missing data)
+- Monthly window used for all time-based KPIs (acceptable approximation)
+
+---
+
+## 🧠 Key Learning
+
+- KPI definitions are not just formulas — they require **business context + data awareness**
+- Choosing the correct **unit of analysis (account vs subscription)** is critical
+- Misaligned numerator and denominator can silently break metrics
+- Handling **real-world data issues** (missing timestamps, inconsistent flags) is part of analysis
+- Clear documentation of assumptions improves:
+  - Interpretability
+  - Reproducibility
+  - Interview communication
+- Revenue-based metrics must always consider **timing (before vs after churn)**
+
+---
+
+## 🚀 Status
+
+- ✅ KPI definitions completed and standardized  
+- ✅ Business logic aligned with dataset constraints  
+- ✅ All assumptions documented  
+- ✅ Ready to move to **Step 12: SQL Implementation**
+
+---
