@@ -355,7 +355,7 @@ Learned to:
 ✅ Data is now analysis-ready  
 ➡️ Ready to move to KPI definition (Step 11)
 
-# 📘 Project Journal — Step 11: KPI Definitions
+## Step 11: KPI Definitions
 
 **Date:** 28/04/2026  
 
