@@ -361,7 +361,7 @@ Learned to:
 
 ---
 
-## ✅ What I Did
+## What I Did
 
 - Defined all core business KPIs across:
   - Churn & Retention
@@ -386,7 +386,7 @@ Learned to:
 
 ---
 
-## 🔍 Key Findings
+## Key Findings
 
 - `churn_events` is the only reliable source of churn → account-level churn_flag is inconsistent
 - Multiple subscriptions per account require strict use of `COUNT(DISTINCT account_id)`
@@ -400,7 +400,7 @@ Learned to:
 
 ---
 
-## 🎯 Decisions Taken
+## Decisions Taken
 
 - Churn and retention measured at **account level**, not subscription level
 - Churn Rate includes **trial + paid users** to capture full funnel drop-off
@@ -416,7 +416,7 @@ Learned to:
 
 ---
 
-## 🧠 Key Learning
+## Key Learning
 
 - KPI definitions are not just formulas — they require **business context + data awareness**
 - Choosing the correct **unit of analysis (account vs subscription)** is critical
@@ -430,11 +430,11 @@ Learned to:
 
 ---
 
-## 🚀 Status
+## Status
 
-- ✅ KPI definitions completed and standardized  
-- ✅ Business logic aligned with dataset constraints  
-- ✅ All assumptions documented  
-- ✅ Ready to move to **Step 12: SQL Implementation**
+- KPI definitions completed and standardized  
+- Business logic aligned with dataset constraints  
+- All assumptions documented  
+- Ready to move to **Step 12: SQL Implementation**
 
 ---
